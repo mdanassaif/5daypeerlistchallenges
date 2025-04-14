@@ -21,9 +21,9 @@ export default function Home() {
     },
     {
       day: 3,
-      title: "Coming Soon",
-      description: "Challenge details will be announced soon",
-      status: "Upcoming",
+      title: "Animated Checkboxes",
+      description: "Animated Checkboxes by Rauno Frielberg",
+      status: "Completed",
       path: "/day3"
     },
     {
