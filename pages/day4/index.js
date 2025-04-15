@@ -27,102 +27,87 @@ export default function Day4() {
       
       <div className="flex flex-col justify-center items-center h-screen bg-white relative">
  
-<div className="relative w-full max-w-md">
-  <div className="relative flex items-center w-full h-16 bg-gray-100 rounded-full overflow-hidden">
+        <div className="relative w-full max-w-md">
+          <div className="relative flex items-center w-full h-16 bg-gray-100 rounded-full overflow-hidden">
  
-    <motion.div 
-      className="absolute h-16 rounded-full bg-black"
-      initial={false}
-      animate={{
-        width: selectedType === 'free' ? '50%' : '0%',
-        left: '0',
-        opacity: selectedType === 'free' ? 1 : 0
-      }}
-      transition={{ type: "spring", stiffness: 300, damping: 25 }}
-    />
-    
+           
+            <motion.div 
+              className="absolute h-16 rounded-full bg-black"
+              initial={false}
+              animate={{ 
+                width: '50%',
+                left: selectedType === 'free' ? '0%' : '50%'
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            />
+            
  
-    <motion.div 
-      className="absolute h-16 rounded-full bg-black"
-      initial={false}
-      animate={{ 
-        width: selectedType === 'premium' ? '50%' : '0%', 
-        left: '50%',
-        opacity: selectedType === 'premium' ? 1 : 0 
-      }}
-      transition={{ type: "spring", stiffness: 300, damping: 25 }}
-    />
-    
+            {selectedType === 'premium' && (
+              <motion.div 
+                className="absolute h-14 m-1 rounded-full bg-white"
+                initial={{ width: '0%' }}
+                animate={{
+                  width: '23%',
+                  left: selectedPlan === 'monthly' ? '51%' : '76%',
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
+              />
+            )}
+            
  
-    {selectedType === 'premium' && (
-      <motion.div 
-        className="absolute h-14 m-1 rounded-full bg-white"
-        initial={{ width: '0%' }}
-        animate={{
-          width: '23%',
-          left: selectedPlan === 'monthly' ? '51%' : '76%',
-        }}
-        transition={{ type: "spring", stiffness: 400, damping: 28 }}
-      />
-    )}
-    
+            <button
+              onClick={() => handleTypeChange('free')}
+              className={`relative z-10 w-1/2 h-full flex items-center justify-center rounded-full font-bold text-lg transition-all duration-300 ${
+                selectedType === 'free' ? 'text-white' : 'text-black'
+              }`}
+            >
+              Free
+            </button>
+            
  
-    <button
-      onClick={() => handleTypeChange('free')}
-      className={`relative z-10 w-1/2 h-full flex items-center justify-center rounded-full font-bold text-lg transition-all duration-300 ${
-        selectedType === 'free' ? 'text-white' : 'text-black'
-      }`}
-    >
-      Free
-    </button>
-    
- 
-    <div className="relative z-10 w-1/2 h-full flex items-center justify-center">
-      {selectedType === 'free' ? (
- 
-        <div className="w-full h-full flex flex-col items-center justify-center">
-          <button
-            onClick={() => handleTypeChange('premium')}
-            className="w-full flex flex-col items-center justify-center text-black transition-all duration-300"
-          >
-            <span className="font-bold text-lg">Premium</span>
-            <span className="text-xs text-gray-500">Monthly • Annual</span>
-          </button>
+            <div className="relative z-10 w-1/2 h-full flex items-center justify-center">
+              {selectedType === 'free' ? (
+                <div className="w-full h-full flex flex-col items-center justify-center">
+                  <button
+                    onClick={() => handleTypeChange('premium')}
+                    className="w-full flex flex-col items-center justify-center text-black transition-all duration-300"
+                  >
+                    <span className="font-bold text-lg">Premium</span>
+                    <span className="text-xs text-gray-500">Monthly • Annual</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="w-full h-full flex">
+                  <motion.button
+                    onClick={() => handlePlanChange('monthly')}
+                    className={`w-1/2 h-full flex items-center justify-center rounded-full font-bold text-lg transition-colors duration-300 ${
+                      selectedPlan === 'monthly' ? 'text-black' : 'text-white'
+                    }`}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    Monthly
+                  </motion.button>
+                  <motion.button
+                    onClick={() => handlePlanChange('annual')}
+                    className={`w-1/2 h-full flex items-center justify-center rounded-full font-bold text-lg transition-colors duration-300 ${
+                      selectedPlan === 'annual' ? 'text-black' : 'text-white'
+                    }`}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    Annual
+                  </motion.button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      ) : (
-    
-        <div className="w-full h-full flex">
-          <motion.button
-            onClick={() => handlePlanChange('monthly')}
-            className={`w-1/2 h-full flex items-center justify-center rounded-full font-bold text-lg transition-colors duration-300 ${
-              selectedPlan === 'monthly' ? 'text-black' : 'text-white'
-            }`}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-          >
-            Monthly
-          </motion.button>
-          <motion.button
-            onClick={() => handlePlanChange('annual')}
-            className={`w-1/2 h-full flex items-center justify-center rounded-full font-bold text-lg transition-colors duration-300 ${
-              selectedPlan === 'annual' ? 'text-black' : 'text-white'
-            }`}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-          >
-            Annual
-          </motion.button>
-        </div>
-      )}
-    </div>
-  </div>
-</div>
         
-  
         <div className="mt-20 text-center">
           <p className="text-gray-500 text-lg">
             {selectedType === 'free' ? 
@@ -130,8 +115,6 @@ export default function Day4() {
               `Premium Plan - ${selectedPlan === 'monthly' ? 'Monthly' : 'Annual'} Billing`}
           </p>
         </div>
- 
-        
  
         <div className="absolute bottom-8 flex space-x-4">
           <Link href="/day3" className="px-3 py-1 text-xs text-gray-500 border border-gray-200 rounded-md hover:bg-gray-50 flex items-center">
