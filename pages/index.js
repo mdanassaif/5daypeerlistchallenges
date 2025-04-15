@@ -28,9 +28,9 @@ export default function Home() {
     },
     {
       day: 4,
-      title: "Coming Soon",
-      description: "Challenge details will be announced soon",
-      status: "Upcoming",
+      title: "Animated Toggles",
+      description: "Animated toggles switch that transitions smoothly between pricing options, offering users by LN.",
+      status: "Completed",
       path: "/day4"
     },
     {
