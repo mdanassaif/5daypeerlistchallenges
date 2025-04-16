@@ -35,12 +35,13 @@ export default function Home() {
     },
     {
       day: 5,
-      title: "Coming Soon",
-      description: "Challenge details will be announced soon", 
-      status: "Upcoming",
+      title: "Shared Layout Tabs",
+      description: "Design a tab navigation that transitions smoothly between different content by Ben", 
+      status: "Completed",
       path: "/day5"
     }
   ];
+ 
 
   return (
     <>
